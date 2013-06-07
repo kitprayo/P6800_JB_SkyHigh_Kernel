@@ -887,9 +887,9 @@ ssize_t store_UV_mV_table(struct cpufreq_policy *policy,
   unsigned int ret = -EINVAL;
 	int i = 0;
 	int j = 0;
-	int u[7];
-	ret = sscanf(buf, "%d %d %d %d %d %d %d\n",
-		&u[0], &u[1], &u[2], &u[3], &u[4], &u[5], &u[6]);
+	int u[16];
+	ret = sscanf(buf, "%d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d\n",
+		&u[0], &u[1], &u[2], &u[3], &u[4], &u[5], &u[6], &u[7], &u[8], &u[9], &u[10], &u[11], &u[12], &u[13], &u[14], &u[15]);
 
 	if(ret != exynos_info->min_support_idx + 1)
 		 return -EINVAL;
