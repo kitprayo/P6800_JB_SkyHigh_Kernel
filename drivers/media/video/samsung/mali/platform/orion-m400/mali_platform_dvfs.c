@@ -71,8 +71,8 @@ mali_dvfs_staycount_table mali_dvfs_staycount[MALI_DVFS_STEPS]={
 /*dvfs threshold*/
 mali_dvfs_threshold_table mali_dvfs_threshold[MALI_DVFS_STEPS]={
 	/*step 0*/{((int)((255*0)/100))   ,((int)((255*60)/100))}, 
-	/*step 1*/{((int)((255*80)/100))  ,((int)((255*70)/100))},
-	/*step 2*/{((int)((255*80)/100))  ,((int)((255*85)/100))},
+	/*step 1*/{((int)((255*80)/100))  ,((int)((255*75)/100))},
+	/*step 2*/{((int)((255*80)/100))  ,((int)((255*90)/100))},
 	/*step 3*/{((int)((255*80)/100))  ,((int)((255*100)/100))} };
 
 /*dvfs status*/
