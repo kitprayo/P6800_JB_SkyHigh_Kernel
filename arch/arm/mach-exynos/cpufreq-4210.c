@@ -24,7 +24,7 @@
 
 #include <plat/clock.h>
 
-#define CPUFREQ_LEVEL_END	L16
+#define CPUFREQ_LEVEL_END	L18
 
 static int max_support_idx;
 static int min_support_idx = (CPUFREQ_LEVEL_END - 1);
@@ -41,22 +41,24 @@ struct cpufreq_clkdiv {
 static unsigned int exynos4210_volt_table[CPUFREQ_LEVEL_END];
 
 static struct cpufreq_frequency_table exynos4210_freq_table[] = {
-	{L0, 1600 * 1000},
-	{L1, 1500 * 1000},
-	{L2, 1400 * 1000},
-	{L3, 1300 * 1000},
-	{L4, 1200 * 1000},
-	{L5, 1100 * 1000},
-	{L6, 1000 * 1000},
-	{L7,  900 * 1000},
-	{L8,  800 * 1000},
-	{L9,  700 * 1000},
-	{L10, 600 * 1000},
-	{L11, 500 * 1000},
-	{L12, 400 * 1000},
-	{L13, 300 * 1000},
-	{L14, 200 * 1000},
-	{L15, 100 * 1000}, 
+	{L0, 1800 * 1000},
+	{L1, 1700 * 1000},
+	{L2, 1600 * 1000},
+	{L3, 1500 * 1000},
+	{L4, 1400 * 1000},
+	{L5, 1300 * 1000},
+	{L6, 1200 * 1000},
+	{L7, 1100 * 1000},
+	{L8, 1000 * 1000},
+	{L9,  900 * 1000},
+	{L10, 800 * 1000},
+	{L11, 700 * 1000},
+	{L12, 600 * 1000},
+	{L13, 500 * 1000},
+	{L14, 400 * 1000},
+	{L15, 300 * 1000},
+	{L16, 200 * 1000},
+	{L17, 100 * 1000}, 
 	{0, CPUFREQ_TABLE_END},
 };
 
@@ -76,7 +78,9 @@ static struct cpufreq_clkdiv exynos4210_clkdiv_table[] = {
 	{L12, 0},
 	{L13, 0},
 	{L14, 0},
-	{L15, 0}, 
+	{L15, 0},
+	{L16, 0}, 
+	{L17, 0},  
 };
 
 static unsigned int clkdiv_cpu0[CPUFREQ_LEVEL_END][7] = {
@@ -86,52 +90,58 @@ static unsigned int clkdiv_cpu0[CPUFREQ_LEVEL_END][7] = {
 	 *		DIVATB, DIVPCLK_DBG, DIVAPLL }
 	 */
 	
-	/* ARM L0: 1600MHz */
+	/* ARM L0: 1800MHz */
 	{ 0, 3, 7, 3, 4, 1, 7 }, 
 
-	/* ARM L1: 1500MHz */ 
+	/* ARM L1: 1700MHz */ 
 	{ 0, 3, 7, 3, 4, 1, 7 },
 
-	/* ARM L2: 1400MHz */  
+	/* ARM L2: 1600MHz */
+	{ 0, 3, 7, 3, 4, 1, 7 }, 
+
+	/* ARM L3: 1500MHz */ 
+	{ 0, 3, 7, 3, 4, 1, 7 },
+
+	/* ARM L4: 1400MHz */  
 	{ 0, 3, 7, 3, 4, 1, 7 }, 
  
-	/* ARM L3: 1300MHz */
+	/* ARM L5: 1300MHz */
 	{ 0, 3, 7, 3, 4, 1, 7 },
  
-	/* ARM L4: 1200MHz */ 
+	/* ARM L6: 1200MHz */ 
 	{ 0, 3, 7, 3, 4, 1, 7 },  
 
-	/* ARM L5: 1100MHz */
+	/* ARM L7: 1100MHz */
 	{ 0, 3, 7, 3, 4, 1, 7 },
 
-	/* ARM L6: 1000MHz */
+	/* ARM L8: 1000MHz */
 	{ 0, 3, 7, 3, 4, 1, 7 },
 
-	/* ARM L7:  900MHz */ 
+	/* ARM L9:  900MHz */ 
 	{ 0, 3, 7, 3, 4, 1, 7 },
 
-	/* ARM L8:  800MHz */
+	/* ARM L10:  800MHz */
 	{ 0, 3, 7, 3, 3, 1, 7 },
 
-	/* ARM L9:  700MHz */  
+	/* ARM L11:  700MHz */  
 	{ 0, 3, 7, 3, 3, 1, 7 },
 
-	/* ARM L10: 600MHz */  
+	/* ARM L12: 600MHz */  
 	{ 0, 3, 7, 3, 3, 1, 7 }, 
 
-	/* ARM L11: 500MHz */ 
+	/* ARM L13: 500MHz */ 
 	{ 0, 3, 7, 3, 3, 1, 7 },
 
-	/* ARM L12: 400MHz */ 
+	/* ARM L14: 400MHz */ 
 	{ 0, 3, 7, 3, 3, 1, 7 },
 
-	/* ARM L13: 300MHz */  
+	/* ARM L15: 300MHz */  
 	{ 0, 3, 7, 3, 3, 1, 7 },
 
-	/* ARM L14: 200MHz */ 
+	/* ARM L16: 200MHz */ 
 	{ 0, 1, 3, 1, 3, 1, 7 },
 
-	/* ARM L15: 100MHz */   
+	/* ARM L17: 100MHz */   
 	{ 0, 1, 3, 1, 3, 1, 7 }, 
 };
 
@@ -140,104 +150,117 @@ static unsigned int clkdiv_cpu1[CPUFREQ_LEVEL_END][2] = {
 	 * { DIVCOPY, DIVHPM }
 	 */
 	
-	/* ARM L0: 1600MHz */
+	/* ARM L0: 1800MHz */
 	{ 5, 0 },
   
-	/* ARM L1: 1500MHz */
+	/* ARM L1: 1700MHz */
+	{ 5, 0 },
+
+	/* ARM L2: 1600MHz */
+	{ 5, 0 },
+  
+	/* ARM L3: 1500MHz */
 	{ 5, 0 }, 
 
-	/* ARM L2: 1400MHz */
+	/* ARM L4: 1400MHz */
 	{ 5, 0 },
 
-	/* ARM L3: 1300MHz */ 
+	/* ARM L5: 1300MHz */ 
 	{ 5, 0 },
  
-	/* ARM L4: 1200MHz */ 
+	/* ARM L6: 1200MHz */ 
 	{ 5, 0 },
 
-	/* ARM L5: 1100MHz */ 
+	/* ARM L7: 1100MHz */ 
 	{ 4, 0 }, 
 
-	/* ARM L6: 1000MHz */
+	/* ARM L8: 1000MHz */
 	{ 4, 0 },
 
-	/* ARM L7:  900MHz */  
+	/* ARM L9:  900MHz */  
 	{ 4, 0 },
 
-	/* ARM L8:  800MHz */ 
+	/* ARM L10: 800MHz */ 
 	{ 3, 0 },
 
-	/* ARM L9:  700MHz */ 
+	/* ARM L11: 700MHz */ 
 	{ 3, 0 }, 
 
-	/* ARM L10: 600MHz */
+	/* ARM L12: 600MHz */
 	{ 3, 0 },
 
-	/* ARM L11: 500MHz */  
+	/* ARM L13: 500MHz */  
 	{ 3, 0 },
 
-	/* ARM L12: 400MHz */  
+	/* ARM L14: 400MHz */  
 	{ 3, 0 }, 
 
-	/* ARM L13: 300MHz */ 
+	/* ARM L15: 300MHz */ 
 	{ 3, 0 },
 
-	/* ARM L14: 200MHz */  
+	/* ARM L16: 200MHz */  
 	{ 3, 0 },
 
-	/* ARM L15: 100MHz */  
+	/* ARM L17: 100MHz */  
 	{ 3, 0 },  
 };
 
 static unsigned int exynos4_apll_pms_table[CPUFREQ_LEVEL_END] = {
 	
-	/* APLL FOUT L0: 1600MHz */
+	/* APLL FOUT L0: 1800MHz */
 	((200 << 16)|(3 << 8)|(0x1)),  
 
-	/* APLL FOUT L1: 1500MHz */
+	/* APLL FOUT L1: 1700MHz */
 	((375 << 16)|(6 << 8)|(0x1)),  
 
-	/* APLL FOUT L2: 1400MHz */
+	/* APLL FOUT L2: 1600MHz */
+	((200 << 16)|(3 << 8)|(0x1)),  
+
+	/* APLL FOUT L3: 1500MHz */
+	((375 << 16)|(6 << 8)|(0x1)),  
+
+	/* APLL FOUT L4: 1400MHz */
 	((350 << 16)|(6 << 8)|(0x1)),  
 
-	/* APLL FOUT L3: 1300MHz */
+	/* APLL FOUT L5: 1300MHz */
 	((325 << 16)|(6 << 8)|(0x1)),  
 
-	/* APLL FOUT L4: 1200MHz */
+	/* APLL FOUT L6: 1200MHz */
 	((150 << 16)|(3 << 8)|(0x1)),  
 
-	/* APLL FOUT L5: 1100MHz */
+	/* APLL FOUT L7: 1100MHz */
 	((275 << 16)|(6 << 8)|(0x1)),  
 
-	/* APLL FOUT L6: 1000MHz */
+	/* APLL FOUT L8: 1000MHz */
 	((250 << 16)|(6 << 8)|(0x1)),  
 
-	/* APLL FOUT L7:  900MHz */
+	/* APLL FOUT L9:  900MHz */
 	((225 << 16)|(6 << 8)|(0x1)),  
 
-	/* APLL FOUT L8:  800MHz */
+	/* APLL FOUT L10:  800MHz */
 	((200 << 16)|(6 << 8)|(0x1)),  
 
-	/* APLL FOUT L9:  700MHz */
+	/* APLL FOUT L11:  700MHz */
 	((350 << 16)|(6 << 8)|(0x2)),  
 
-	/* APLL FOUT L10: 600MHz */
+	/* APLL FOUT L12: 600MHz */
 	((300 << 16)|(6 << 8)|(0x2)),  
 
-	/* APLL FOUT L11: 500MHz */
+	/* APLL FOUT L13: 500MHz */
 	((250 << 16)|(6 << 8)|(0x2)),  
 
-	/* APLL FOUT L12: 400MHz */
+	/* APLL FOUT L14: 400MHz */
 	((200 << 16)|(6 << 8)|(0x2)),  
 
-	/* APLL FOUT L13: 300MHz */
+	/* APLL FOUT L15: 300MHz */
 	((300 << 16)|(6 << 8)|(0x3)),  
 
-	/* APLL FOUT L14: 200MHz */
+	/* APLL FOUT L16: 200MHz */
 	((200 << 16)|(6 << 8)|(0x3)),  
 
-	/* APLL FOUT L15: 100MHz */
+	/* APLL FOUT L17: 100MHz */
 	((200 << 16)|(6 << 8)|(0x4)),  
+
 };
 
 /*
@@ -274,8 +297,8 @@ static const unsigned int asv_voltage_B[CPUFREQ_LEVEL_END][5] = {
 	 * @200	 :
 	 */
 	
-	//  { 1450000, 1450000, 1400000, 1350000, 1350000 }, //1800MHz
-	//  { 1425000, 1425000, 1375000, 1325000, 1325000 }, //1700MHz
+	{ 1450000, 1450000, 1400000, 1350000, 1350000 }, //1800MHz
+	{ 1425000, 1425000, 1375000, 1325000, 1325000 }, //1700MHz
 	{ 1375000, 1375000, 1325000, 1300000, 1300000 }, //1600MHz
 	{ 1375000, 1375000, 1300000, 1250000, 1225000 }, //1500MHz
 	{ 1350000, 1325000, 1300000, 1250000, 1225000 }, //1400MHz
@@ -291,7 +314,7 @@ static const unsigned int asv_voltage_B[CPUFREQ_LEVEL_END][5] = {
 	{ 1050000, 975000, 950000, 950000, 950000 }, // 400MHz
 	{ 1025000, 950000, 950000, 950000, 950000 }, // 300MHz
 	{ 1025000, 950000, 950000, 950000, 950000 }, // 200MHz
-	{ 1000000, 925000, 950000, 950000, 950000 }, // 100MHz 
+	{ 1000000, 950000, 950000, 950000, 950000 }, // 100MHz 
 
 };
 
@@ -435,7 +458,7 @@ static void __init set_volt_table(void)
 	case SUPPORT_1400MHZ:
 #if defined(CONFIG_EXYNOS4210_1200MHZ_SUPPORT)
 		for_1200 = true;
-		max_support_idx = L1;
+		max_support_idx = L0;
 #else
 		for_1400 = true;
 		max_support_idx = L0;
@@ -447,11 +470,11 @@ static void __init set_volt_table(void)
 		break;
 	case SUPPORT_1000MHZ:
 		for_1000 = true;
-		max_support_idx = L6;
+		max_support_idx = L8;
 		break;
 	default:
 		for_1000 = true;
-		max_support_idx = L6;
+		max_support_idx = L8;
 		break;
 	}
 
@@ -551,8 +574,8 @@ int exynos4210_cpufreq_init(struct exynos_dvfs_info *info)
 	}
 
 	info->mpll_freq_khz = rate;
-	info->pm_lock_idx = L8; /* PM safe freq should be 800Mhz on cpu wakeup */
-	info->pll_safe_idx = L6; /* Safe freq should be 1000Mhz */ 
+	info->pm_lock_idx = L10; /* PM safe freq should be 800Mhz on cpu wakeup */
+	info->pll_safe_idx = L8; /* Safe freq should be 1000Mhz */ 
 	info->max_support_idx = max_support_idx;
 	info->min_support_idx = min_support_idx;
 	info->cpu_clk = cpu_clk;
