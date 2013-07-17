@@ -17,6 +17,8 @@
  *
  * New Version: Roberto / Gokhanmoral
  *
+ * Edited by UpInTheAir@XDA for Samsung Galaxy Tab 7.7 battery/balanced profile 
+ *
  * Driver values in /sys/devices/system/cpu/cpufreq/lulzactiveq
  * 
  */
@@ -112,19 +114,19 @@ static u64 hispeed_freq;
 /*
  * The minimum amount of time to spend at a frequency before we can step up.
  */
-#define DEFAULT_UP_SAMPLE_TIME 40 * USEC_PER_MSEC
+#define DEFAULT_UP_SAMPLE_TIME 50 * USEC_PER_MSEC
 static unsigned long up_sample_time;
 
 /*
  * The minimum amount of time to spend at a frequency before we can step down.
  */
-#define DEFAULT_DOWN_SAMPLE_TIME 20 * USEC_PER_MSEC
+#define DEFAULT_DOWN_SAMPLE_TIME 40 * USEC_PER_MSEC
 static unsigned long down_sample_time;
 
 /*
  * CPU freq will be increased if measured load > inc_cpu_load;
  */
-#define DEFAULT_INC_CPU_LOAD 80
+#define DEFAULT_INC_CPU_LOAD 90
 static unsigned long inc_cpu_load;
 
 /*
