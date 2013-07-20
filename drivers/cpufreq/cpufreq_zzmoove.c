@@ -209,6 +209,8 @@
  *	  stop looping once the frequency has been found
  *	  return invalid error if new frequency is not found in the frequency table
  *
+ * Version 0.6 tweaked by UpInTheAir@XDA for Samsung Galaxy Tab 7.7 SkyHigh Kernel
+ *
  *---------------------------------------------------------------------------------------------------------------------------------------------------------
  *-                                                                                                                                                       -
  *---------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -229,7 +231,7 @@
 #include <linux/earlysuspend.h>
 
 // cpu load trigger
-#define DEF_SMOOTH_UP (75)
+#define DEF_SMOOTH_UP (85)
 
 /*
  * dbs is used in this file as a shortform for demandbased switching
@@ -237,13 +239,13 @@
  */
 
 // ZZ: midnight and zzmoove default values
-#define DEF_FREQUENCY_UP_THRESHOLD		(70)
+#define DEF_FREQUENCY_UP_THRESHOLD		(80)
 #define DEF_FREQUENCY_UP_THRESHOLD_HOTPLUG	(68)	// ZZ: default for hotplug up threshold for all cpus (cpu0 stays allways on)
 #define DEF_FREQUENCY_DOWN_THRESHOLD		(52)
 #define DEF_FREQUENCY_DOWN_THRESHOLD_HOTPLUG	(55)	// ZZ: default for hotplug down threshold for all cpus (cpu0 stays allways on)
 #define DEF_IGNORE_NICE				(0)	// ZZ: default for ignore nice load
-#define DEF_FREQ_STEP				(5)	// ZZ: default for freq step at awake
-#define DEF_FREQ_STEP_SLEEP			(5)	// ZZ: default for freq step at early suspend
+#define DEF_FREQ_STEP				(13)	// ZZ: default for freq step at awake
+#define DEF_FREQ_STEP_SLEEP			(13)	// ZZ: default for freq step at early suspend
 
 // ZZ: LCDFreq Scaling default values
 #ifdef CONFIG_CPU_FREQ_LCD_FREQ_DFS
