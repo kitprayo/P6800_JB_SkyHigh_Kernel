@@ -2877,12 +2877,12 @@ static struct regulator_init_data buck4_init_data = {
 static struct regulator_init_data buck5_init_data = {
 	.constraints	= {
 		.name		= "VMEM_1.2V",
-		.min_uV		= 1200000,
-		.max_uV		= 1200000,
+		.min_uV		= 1150000,
+		.max_uV		= 1150000,
 		.apply_uV	= 1,
 		.always_on	= 1,
 		.state_mem	= {
-			.uV		= 1200000,
+			.uV		= 1150000,
 			.mode		= REGULATOR_MODE_NORMAL,
 			.enabled = 1,
 		},
