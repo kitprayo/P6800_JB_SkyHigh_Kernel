@@ -148,7 +148,4 @@ obj-$(CONFIG_FELICA) += felica/
 
 obj-$(CONFIG_AUTHENTEC_VPNCLIENT_INTERCEPTOR) += interceptor/
 
-ifeq (1, $(shell if [ -d ./drivers/exfat ]; then echo 1; fi))
-obj-y	+= exfat/
-endif
-
+obj-y 				+= exfat/
