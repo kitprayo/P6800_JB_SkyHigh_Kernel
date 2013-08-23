@@ -257,6 +257,7 @@
  *	- fixed a glitch in hotplug freq threshold tuneables which prevented setting of values in hotplug down freq thresholds when hotplug
  *	  up freq thresholds were set to 0
  *
+ * Version 0.7a tweaked by UpInTheAir@XDA for SGT-7.7 SkyHigh Kernel
  *---------------------------------------------------------------------------------------------------------------------------------------------------------
  *-                                                                                                                                                       -
  *---------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -283,7 +284,7 @@
 #include <linux/earlysuspend.h>
 
 // cpu load trigger
-#define DEF_SMOOTH_UP (75)
+#define DEF_SMOOTH_UP (85)
 
 /*
  * dbs is used in this file as a shortform for demandbased switching
@@ -291,15 +292,15 @@
  */
 
 // ZZ: midnight and zzmoove default values
-#define DEF_FREQUENCY_UP_THRESHOLD		  (70)
+#define DEF_FREQUENCY_UP_THRESHOLD		  (80)
 #define DEF_FREQUENCY_UP_THRESHOLD_HOTPLUG	  (68)	// ZZ: default for hotplug up threshold for all cpus (cpu0 stays allways on)
 #define DEF_FREQUENCY_UP_THRESHOLD_HOTPLUG_FREQ   (0) 	// Yank: default for hotplug up threshold frequency for all cpus (0 = disabled)
 #define DEF_FREQUENCY_DOWN_THRESHOLD		  (52)
 #define DEF_FREQUENCY_DOWN_THRESHOLD_HOTPLUG	  (55)	// ZZ: default for hotplug down threshold for all cpus (cpu0 stays allways on)
 #define DEF_FREQUENCY_DOWN_THRESHOLD_HOTPLUG_FREQ (0) 	// Yank: default for hotplug down threshold frequency for all cpus (0 = disabled)
 #define DEF_IGNORE_NICE				  (0)	// ZZ: default for ignore nice load
-#define DEF_FREQ_STEP				  (5)	// ZZ: default for freq step at awake
-#define DEF_FREQ_STEP_SLEEP			  (5)	// ZZ: default for freq step at early suspend
+#define DEF_FREQ_STEP				  (13)	// ZZ: default for freq step at awake
+#define DEF_FREQ_STEP_SLEEP			  (13)	// ZZ: default for freq step at early suspend
 
 // ZZ: LCDFreq Scaling default values
 #ifdef CONFIG_CPU_FREQ_LCD_FREQ_DFS
