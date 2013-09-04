@@ -272,6 +272,7 @@
  *	- code cleaning - removed some unnecessary things and whitespaces nuked (sry for the bigger diff but from now on it will be clean ;))
  *	- corrected changelog for previous version regarding limits
  *
+ * Version 0.7c modified by UpInTheAir@XDA for SGT 7.7 SkyHigh kernel compatibility
  *---------------------------------------------------------------------------------------------------------------------------------------------------------
  *-                                                                                                                                                       -
  *---------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -313,8 +314,8 @@
 #define DEF_FREQUENCY_DOWN_THRESHOLD_HOTPLUG	  (55)	// ZZ: default for hotplug down threshold for all cpus (cpu0 stays allways on)
 #define DEF_FREQUENCY_DOWN_THRESHOLD_HOTPLUG_FREQ (0)	// Yank: default for hotplug down threshold frequency for all cpus (0 = disabled)
 #define DEF_IGNORE_NICE				  (0)	// ZZ: default for ignore nice load
-#define DEF_FREQ_STEP				  (5)	// ZZ: default for freq step at awake
-#define DEF_FREQ_STEP_SLEEP			  (5)	// ZZ: default for freq step at early suspend
+#define DEF_FREQ_STEP				  (11)	// ZZ: default for freq step at awake
+#define DEF_FREQ_STEP_SLEEP			  (11)	// ZZ: default for freq step at early suspend
 
 // ZZ: LCDFreq Scaling default values
 #ifdef CONFIG_CPU_FREQ_LCD_FREQ_DFS
